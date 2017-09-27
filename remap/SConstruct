@@ -1,0 +1,8 @@
+libpath=Split("/usr/lib:/usr/local/lib")
+cpppath=Split('/usr/include/python2.7')
+env = Environment()
+env.Append(LIBPATH = libpath)
+env.Append(CPPPATH=cpppath)
+
+env.AppendUnique(LIBS=['osg']);
+env.Program("remap", "remap.cpp")

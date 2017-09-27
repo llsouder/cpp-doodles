@@ -1,0 +1,14 @@
+
+UICS = Glob('*.ui')
+
+for x in UICS:
+	temp = env.Uic4(source = x, duplicate=0)
+	Default(temp)
+	
+CPPS = Glob('*.cpp')
+
+lib = env.SharedLibrary(target = '#/lib/pluginDateTimeControls',
+ source = CPPS,
+ CPPPATH=['.','#', '#/src/core', '#/src/gui', '#/.build/src/plugins/dateTimeControls', env['CPPPATH']])
+Default(lib)
+

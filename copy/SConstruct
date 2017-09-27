@@ -1,0 +1,8 @@
+libpath=Split("/usr/lib:/usr/local/lib")
+cpppath=Split('/usr/include/python2.7')
+libs=Split('python2.7 boost_chrono boost_system')
+env = Environment()
+env.Append(LIBPATH = libpath)
+env.Append(CPPPATH=cpppath)
+env.Append(LIBS=libs)
+env.Alias("hello", env.Program("copy", "copy.cpp")) 

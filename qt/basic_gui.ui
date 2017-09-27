@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TableDialog</class>
+ <widget class="QDialog" name="TableDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>281</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="pbEnterData">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>150</y>
+     <width>108</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enter Data</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pbEnterData</sender>
+   <signal>clicked()</signal>
+   <receiver>TableDialog</receiver>
+   <slot>addNewData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>123</x>
+     <y>702</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>424</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addNewData()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,27 @@
+import os
+env = Environment(tools=['default', 'qt4'])
+
+env['QT_DEBUG'] = 1
+env.AppendUnique(ENV = os.environ)
+
+env.EnableQt4Modules([
+                      'QtGui',
+                      'QtCore',
+                     ])
+
+env['QT_LIB'] = 'qt-mt'
+CPPS = Glob('*.cpp')
+
+UICS = Glob('*.ui')
+
+for x in UICS:
+	temp = env.Uic4(source = x, duplicate=0)
+	Default(temp)
+
+
+viewer = env.Program(target='tims-test', 
+	source=CPPS,
+	CCFLAGS='-O2 -g -std=c++0x -DHAVE_GMTL'
+)
+
+Default(viewer)

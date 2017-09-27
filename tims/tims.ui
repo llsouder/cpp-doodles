@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TimsGui</class>
+ <widget class="QDialog" name="TimsGui">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="pttNot">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>100</y>
+     <width>108</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Shut Up</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pttNot</sender>
+   <signal>clicked()</signal>
+   <receiver>TimsGui</receiver>
+   <slot>shutUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>shutUp()</slot>
+ </slots>
+</ui>

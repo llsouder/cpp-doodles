@@ -1,0 +1,4 @@
+libpath=Split("/usr/lib:/usr/local/lib")
+env = Environment()
+env.Append(LIBPATH = libpath)
+env.Alias("hello", env.Program("range", "range.cpp")) 

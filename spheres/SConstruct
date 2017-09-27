@@ -1,0 +1,44 @@
+import os
+import os.path
+import string
+import SCons.Builder
+import SCons.Node.FS
+import SCons.Util
+import sys
+
+BOOST_NOT_FOUND=124
+
+UICS = Glob('*.ui')
+
+num_cpu = int(os.environ.get('NUM_CPU', 2))
+
+qenv = Environment(tools=['default','qt4'])
+qenv.AppendUnique(ENV = os.environ)
+qenv.AppendUnique(LIBS = ['OpenThreads', 'osg', 'osgDB', 'osgUtil', 'osgGA', 'osgViewer', 'osgText', 'osgShadow', 'osgGA', 'osgUtil', 'osgDB', 'osgSim', 'osgTerrain', 'm', 'OpenThreads', 'pthread', 'GL', 'GLU', 'Xi', 'X11', 'xerces-c', 'boost_signals', 'boost_thread', 'boost_system', 'boost_filesystem', 'tgfutil', 'tgfairspace', 'tgfunits', 'tgfosg-util'])
+qenv.EnableQt4Modules([
+	"QtGui",
+	"QtCore",
+	"Qt3Support",
+	"QtXml",
+	"QtOpenGL"
+])
+
+qenv.SetOption('num_jobs', num_cpu)
+qenv ['ENV']['HOME'] = os.environ.get ('HOME') or  os.environ.get ('HOME', '/tmp') 
+qenv['QT_LIB'] = 'qt-mt'
+#env['CXXFILESUFFIX'] = '.cpp'
+#qenv['OBJSUFFIX'] = '.o'
+#qenv['SHOBJSUFFIX'] = '.o'
+#qenv['QT4_UICDECLPREFIX'] = ''
+#env['QT_UICIMPLPREFIX'] = ''
+
+for x in UICS:
+	temp = qenv.Uic4(source = x, duplicate=0)
+	Default(temp)
+
+viewer = qenv.Program('simpleviewer', 
+	Glob('*.cpp'), 
+	CCFLAGS='-O2 -g'
+)
+
+Default(viewer)

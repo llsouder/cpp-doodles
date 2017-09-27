@@ -1,0 +1,4 @@
+env = Environment()
+hello = env.Program('misc.cpp')
+test = env.Program(Glob('*.cpp'))
+Default(hello)

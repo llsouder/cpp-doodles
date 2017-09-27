@@ -1,0 +1,27 @@
+import os
+import os.path
+import string
+import SCons.Builder
+import SCons.Node.FS
+import SCons.Util
+import sys
+
+BOOST_NOT_FOUND=124
+
+UICS = Glob('*.ui')
+
+num_cpu = int(os.environ.get('NUM_CPU', 2))
+
+env = Environment()
+env.Append(CPPPATH = ['/vsim/framework/'])
+env.Append(LIBPATH = ['/vsim/framework/lib'])
+env.AppendUnique(LIBS = ['OpenThreads', 'osg', 'osgDB', 'osgUtil', 'osgGA', 'osgViewer', 'osgText', 'osgShadow', 'osgSim', 'osgTerrain', 'm', 'OpenThreads', 'pthread', 'GL', 'GLU', 'Xi', 'X11', 'xerces-c', 'boost_signals', 'boost_thread', 'boost_system', 'boost_filesystem', 'boost_chrono', 'tgfutil', 'tgfairspace', 'tgfunits', 'tgfecp', 'tgfspp', 'tgfsdp'])
+
+env.SetOption('num_jobs', num_cpu)
+
+viewer = env.Program('osgtest', 
+	Glob('*.cpp'), 
+	CCFLAGS='-O2 -g -std=c++0x -DHAVE_GMTL'
+)
+
+Default(viewer)
