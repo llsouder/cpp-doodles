@@ -1,3 +1,6 @@
 *.o
 .sconsign.dblite
 *.swp
+*.os
+*.bak
+core.*
